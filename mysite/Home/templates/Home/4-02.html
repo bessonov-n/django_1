@@ -1,0 +1,29 @@
+{% extends 'base_.html' %}
+
+		{% block content %}
+			<form action="file402" method="post">
+				{% csrf_token %}
+			<h2>Выбор третьекурсников на четвёртый курс (профиль _02)</h2><br>
+			Полные ФИО в родительном падеже:<br>{{ form.FIO }}<br><br>
+			Сокращение Фамилия И.О. в именительном падеже:<br>{{ form.FIO2 }}<br><br>
+			Группа:<br>{{ form.group }}<br><br>
+
+			
+			Дисциплины модуля мобильности (Семестр 7):<br>
+			{% for s in s1 %}
+			<input type="radio" name="sem7" value="{{s.val}}" required>{{s.name}}<br>
+			{% endfor %}<br>
+			Дисциплины (модули) по выбору 2 (Семестр 7-8):<br>
+			{% for s in s2 %}
+			<input type="radio" name="sem78" value="{{s.val}}" required>{{s.name}}<br>
+			{% endfor %}<br>
+			Дисциплины (модули) по выбору 1 (Семестр 8):<br>
+			{% for s in s3 %}
+			<input type="radio" name="sem8" value="{{s.val}}" required>{{s.name}}<br>
+			{% endfor %}<br>
+			
+		
+			<button type="submit">Записать в файл</button>
+			</form>
+		
+		{% endblock %}

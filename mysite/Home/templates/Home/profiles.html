@@ -1,0 +1,17 @@
+{% extends 'base_.html' %}
+
+		{% block content %}
+			<form action="file_input" method="post">
+				{% csrf_token %}
+			Полные ФИО в родительном падеже:<br>{{ form.FIO }}<br><br>
+			Сокращение Фамилия И.О. в именительном падеже:<br>{{ form.FIO2 }}<br><br>
+			Группа:<br>{{ form.group }}<br><br>
+			Средний балл за пройденные семестры:<br>{{ form.sred }}<br><br>
+			Выберите желаемый профиль:<br>
+			{% for prof in profch %}
+			<input type="radio" name="profile1" value="{{prof.val}}" required>{{prof.name}}<br>
+			{% endfor %}
+			<button type="submit">Записать в файл</button>
+			</form>
+		
+		{% endblock %}

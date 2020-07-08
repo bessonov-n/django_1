@@ -1,0 +1,27 @@
+{% extends 'base_.html' %}
+
+		{% block content %}
+			<form action="file02" method="post">
+				{% csrf_token %}
+			<h2>Выбор первокурсников на первый и второй годы</h2><br>
+			Полные ФИО в родительном падеже:<br>{{ form.FIO }}<br><br>
+			Сокращение Фамилия И.О. в именительном падеже:<br>{{ form.FIO2 }}<br><br>
+			Группа:<br>{{ form.group }}<br><br>
+			
+			Факультатив ФТД.В.03 (Семестр 1):<br>
+			{% for s1 in sem1 %}
+			<input type="radio" name="seme1" value="{{s1.val}}" required>{{s1.name}}<br>
+			{% endfor %}
+			<br>
+			Факультатив ФТД.В.04 (Семестр 2):<br>
+			{% for s2 in sem2 %}
+			<input type="radio" name="seme2" value="{{s2.val}}" required>{{s2.name}}<br>
+			{% endfor %}<br>
+			Дисциплины (модули) по выбору 3 (Семестр 4):<br>
+			{% for s3 in sem3 %}
+			<input type="radio" name="seme3" value="{{s3.val}}" required>{{s3.name}}<br>
+			{% endfor %}<br>
+			<button type="submit">Записать в файл</button>
+			</form>
+		
+		{% endblock %}
